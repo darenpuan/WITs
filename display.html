@@ -8,39 +8,65 @@
     <script src="https://code.jquery.com/jquery-2.1.3.min.js" integrity="sha256-ivk71nXhz9nsyFDoYoGf2sbjrR9ddh+XDkCcfZxjvcM=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="main.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <style>
+        @media print {
+            .noprint {
+                display: none;
+            }
+        }
 
+        .info {
+            /*            border: 1px solid black;*/
+            padding: 10px;
+        }
+    </style>
+    <script>
+        function getParams() {
+            var idx = document.URL.indexOf('?');
+            var params = new Array();
+            if (idx != -1) {
+                var pairs = document.URL.substring(idx + 1, document.URL.length).split('&');
+                for (var i = 0; i < pairs.length; i++) {
+                    nameVal = pairs[i].split('=');
+                    params[nameVal[0]] = nameVal[1];
+                }
+            }
+            return params;
+        }
+        params = getParams();
+        name = unescape(params["name"]);
+        serialNo = unescape(params["serialNo"]);
+        purpose = unescape(params["purpose"]);
+        branch = unescape(params["branch"]);
+    </script>
 </head>
 
 <body style="margin-top: 30px;">
     <div class="container">
         <div class="row">
+            <div class="noprint">
+                <h1>
+                    <script>
+                        document.write(name + ": " + serialNo)
+                    </script>
+                </h1>
+            </div>
             <form action="">
-                <script LANGUAGE="JavaScript">
-                    function getParams() {
-                        var idx = document.URL.indexOf('?');
-                        var params = new Array();
-                        if (idx != -1) {
-                            var pairs = document.URL.substring(idx + 1, document.URL.length).split('&');
-                            for (var i = 0; i < pairs.length; i++) {
-                                nameVal = pairs[i].split('=');
-                                params[nameVal[0]] = nameVal[1];
-                            }
-                        }
-                        return params;
-                    }
-                    params = getParams();
-                    name = unescape(params["name"]);
-                    serialNo = unescape(params["serialNo"]);
-                    purpose = unescape(params["purpose"]);
-                    branch = unescape(params["branch"]);
-                    document.write("Name = " + name + "<br>");
-                    document.write("Serial No = " + serialNo + "<br>");
-                    document.write("Purpose = " + purpose + "<br>");
-                    document.write("Location = " + branch + "<br>");
-                </script>
-                <div class="form-group">
-                    <input id="serialNo" class="form-control" value="" type="text" placeholder="Serial Number" name="serialNo" disabled>
+                <div class="noprint col-md-6 info">
+                    <script LANGUAGE="JavaScript">
+                        document.write("<b>Name: </b>" + name + "<br>");
+                        document.write("<b>Serial No: </b> " + serialNo + "<br>");
+                        document.write("<b>Purpose: </b>" + purpose + "<br>");
+                        document.write("<b>Location: </b>" + branch + "<br>");
+                    </script>
+                </div>
+                <div class="form-group print col-md-6">
+                    <input id="serialNo" class="form-control hidden" value="" type="text" placeholder="Serial Number" name="serialNo" disabled>
                     <img id='barcode' alt="" title="QR" width="100" height="100" />
+                    <br>
+                    <script>
+                        document.write(serialNo)
+                    </script>
                     <script LANGUAGE="JavaScript">
                         //        document.write(generateBarCode() + "<br>");
                         document.getElementById('serialNo').value = serialNo;
