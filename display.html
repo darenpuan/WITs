@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js" integrity="sha256-ivk71nXhz9nsyFDoYoGf2sbjrR9ddh+XDkCcfZxjvcM=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+</head>
+
+<body style="margin-top: 30px;">
+    <div class="container">
+        <div class="row">
+            <form action="">
+                <script LANGUAGE="JavaScript">
+                    function getParams() {
+                        var idx = document.URL.indexOf('?');
+                        var params = new Array();
+                        if (idx != -1) {
+                            var pairs = document.URL.substring(idx + 1, document.URL.length).split('&');
+                            for (var i = 0; i < pairs.length; i++) {
+                                nameVal = pairs[i].split('=');
+                                params[nameVal[0]] = nameVal[1];
+                            }
+                        }
+                        return params;
+                    }
+                    params = getParams();
+                    name = unescape(params["name"]);
+                    serialNo = unescape(params["serialNo"]);
+                    purpose = unescape(params["purpose"]);
+                    branch = unescape(params["branch"]);
+                    document.write("Name = " + name + "<br>");
+                    document.write("Serial No = " + serialNo + "<br>");
+                    document.write("Purpose = " + purpose + "<br>");
+                    document.write("Location = " + branch + "<br>");
+                </script>
+                <div class="form-group">
+                    <input id="serialNo" class="form-control" value="" type="text" placeholder="Serial Number" name="serialNo" disabled>
+                    <img id='barcode' alt="" title="QR" width="100" height="100" />
+                    <script LANGUAGE="JavaScript">
+                        //        document.write(generateBarCode() + "<br>");
+                        document.getElementById('serialNo').value = serialNo;
+                        document.getElementById('barcode').src = generateBarCode();
+                    </script>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
