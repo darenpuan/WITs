@@ -35,6 +35,7 @@
         }
         params = getParams();
         name = unescape(params["name"]);
+        desc = unescape(params["desc"]);
         serialNo = unescape(params["serialNo"]);
         purpose = unescape(params["purpose"]);
         branch = unescape(params["branch"]);
@@ -55,6 +56,7 @@
                 <div class="noprint col-md-6 info">
                     <script LANGUAGE="JavaScript">
                         document.write("<b>Name: </b>" + name + "<br>");
+                        document.write("<b>Description: </b>" + desc + "<br>");
                         document.write("<b>Serial No: </b> " + serialNo + "<br>");
                         document.write("<b>Purpose: </b>" + purpose + "<br>");
                         document.write("<b>Location: </b>" + branch + "<br>");
