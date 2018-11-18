@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-2.1.3.min.js" integrity="sha256-ivk71nXhz9nsyFDoYoGf2sbjrR9ddh+XDkCcfZxjvcM=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="main.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         @media print {
             .noprint {
@@ -18,6 +18,10 @@
         .info {
             /*            border: 1px solid black;*/
             padding: 10px;
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
     <script>
@@ -34,11 +38,12 @@
             return params;
         }
         params = getParams();
-        name = unescape(params["name"]);
-        desc = unescape(params["desc"]);
-        serialNo = unescape(params["serialNo"]);
-        purpose = unescape(params["purpose"]);
-        branch = unescape(params["branch"]);
+        name = unescape(params["name"]).replace('+', ' ');
+        desc = unescape(params["desc"]).replace('+', ' ');
+        serialNo = unescape(params["serialNo"]).replace('+', ' ');
+        purpose = unescape(params["purpose"]).replace('+', ' ');
+        branch = unescape(params["branch"]).replace('+', ' ');
+        date = unescape(params["date"]).replace('+', ' ');
     </script>
 </head>
 
@@ -46,13 +51,16 @@
     <div class="container">
         <div class="row">
             <div class="noprint">
-                <h1>
+                <h1><a href="/home.html" style="color: black;">Inventory System</a></h1>
+                <h2>
                     <script>
                         document.write(name + ": " + serialNo)
                     </script>
-                </h1>
+                </h2>
             </div>
-            <form action="">
+        </div>
+        <form action="">
+            <div class="row">
                 <div class="noprint col-md-6 info">
                     <script LANGUAGE="JavaScript">
                         document.write("<b>Name: </b>" + name + "<br>");
@@ -60,11 +68,14 @@
                         document.write("<b>Serial No: </b> " + serialNo + "<br>");
                         document.write("<b>Purpose: </b>" + purpose + "<br>");
                         document.write("<b>Location: </b>" + branch + "<br>");
+                        document.write("<b>Next Maintenance Date: </b>" + date + "<br>");
                     </script>
                 </div>
+            </div>
+            <div class="row">
                 <div class="form-group print col-md-6">
                     <input id="serialNo" class="form-control hidden" value="" type="text" placeholder="Serial Number" name="serialNo" disabled>
-                    <img id='barcode' alt="" title="QR" width="100" height="100" />
+                    <img id='barcode' alt="" title="QR" width="150" height="150" />
                     <br>
                     <script>
                         document.write(serialNo)
@@ -75,8 +86,8 @@
                         document.getElementById('barcode').src = generateBarCode();
                     </script>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </body>
 
