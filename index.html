@@ -10,12 +10,16 @@
 
     <script type="text/javascript" src="main.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body style="margin-top: 30px;">
     <div class="container">
         <div class="row">
-            <h1><a href="/WITs/home.html" style="color: black;">Inventory System</a></h1>
+            <div class="col">
+                <h1><a href="/WITs/home.html" style="color: black;">Inventory System</a></h1>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-6">
@@ -26,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <label for="name" class="sr-only">Item Description</label>
-                        <input type="text" class="form-control" id="desc" name="desc" placeholder="Item Description">
+                        <textarea type="text" class="form-control" rows="3" id="desc" name="desc" placeholder="Item Description"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="name" class="sr-only">Serial Number</label>
@@ -42,8 +46,13 @@
                     </div>
                     <div class="form-group">
                         <label for="date" class="sr-only">Next Maintenance Date</label>
-                        <input type="text" name="date" id="date" class="form-control" placeholder="Next Maintenance Date (01 January 2019)">
+                        <input type="text" name="date" id="date" class="form-control" placeholder="Next Maintenance Date (01/01/2019)">
                     </div>
+                    <script>
+                        $('#date').datepicker({
+                            uiLibrary: 'bootstrap4'
+                        });
+                    </script>
                     <div class="form-group hidden">
                         <img id='barcode' src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=150x150" alt="" title="QR" width="150" height="150" />
                     </div>

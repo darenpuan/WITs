@@ -29,7 +29,7 @@
             var idx = document.URL.indexOf('?');
             var params = new Array();
             if (idx != -1) {
-                var pairs = document.URL.substring(idx + 1, document.URL.length).split('+');
+                var pairs = document.URL.substring(idx + 1, document.URL.length).split('&');
                 for (var i = 0; i < pairs.length; i++) {
                     nameVal = pairs[i].split('=');
                     params[nameVal[0]] = nameVal[1];
@@ -38,19 +38,19 @@
             return params;
         }
         params = getParams();
-        name = unescape(params["name"]).replace('/+/g', ' ');
-        desc = unescape(params["desc"]).replace('/+/g', ' ');
-        serialNo = unescape(params["serialNo"]).replace('/+/g', ' ');
-        purpose = unescape(params["purpose"]).replace('/+/g', ' ');
-        branch = unescape(params["branch"]).replace('/+/g', ' ');
-        date = unescape(params["date"]).replace('/+/g', ' ');
+        var name = unescape(params["name"]).replace(new RegExp("\\+", "g"), ' ');
+        var desc = unescape(params["desc"]).replace(new RegExp("\\+", "g"), ' ');
+        var serialNo = unescape(params["serialNo"]).replace(new RegExp("\\+", "g"), ' ');
+        var purpose = unescape(params["purpose"]).replace(new RegExp("\\+", "g"), ' ');
+        var branch = unescape(params["branch"]).replace(new RegExp("\\+", "g"), ' ');
+        var date = unescape(params["date"]).replace(new RegExp("\\+", "g"), ' ');
     </script>
 </head>
 
 <body style="margin-top: 30px;">
     <div class="container">
         <div class="row">
-            <div class="noprint">
+            <div class="col noprint">
                 <h1><a href="/WITs/home.html" style="color: black;">Inventory System</a></h1>
                 <h2>
                     <script>
