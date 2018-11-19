@@ -38,12 +38,12 @@
             return params;
         }
         params = getParams();
-        name = unescape(params["name"]).replace('/\+/g', ' ');
-        desc = unescape(params["desc"]).replace('/\+/g', ' ');
-        serialNo = unescape(params["serialNo"]).replace('/\+/g', ' ');
-        purpose = unescape(params["purpose"]).replace('/\+/g', ' ');
-        branch = unescape(params["branch"]).replace('/\+/g', ' ');
-        date = unescape(params["date"]).replace('/\+/g', ' ');
+        name = unescape(params["name"]).replace('/+/g', ' ');
+        desc = unescape(params["desc"]).replace('/+/g', ' ');
+        serialNo = unescape(params["serialNo"]).replace('/+/g', ' ');
+        purpose = unescape(params["purpose"]).replace('/+/g', ' ');
+        branch = unescape(params["branch"]).replace('/+/g', ' ');
+        date = unescape(params["date"]).replace('/+/g', ' ');
     </script>
 </head>
 
